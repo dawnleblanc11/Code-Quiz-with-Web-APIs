@@ -22,7 +22,7 @@ An interactive timed quiz with questions on Javascript fundamentals.  This appli
 
 
 ## Executing Program
-If you would like to view Dawn's Portfolio, you can access full code and documentation by visiting Dawn LeBlanc's Git Hub Repo https://github.com/dawnleblanc11/ or view directly via https://dawnleblanc11.github.io//.
+If you would like to view Dawn's Portfolio, you can access full code and documentation by visiting Dawn LeBlanc's Git Hub Repo https://github.com/dawnleblanc11/Code-Quiz-with-Web-APIs or view directly via https://dawnleblanc11.github.io/Code-Quiz-with-Web-APIs/.
 
 ## Help
 All verification of usage was completed on a Google Chrome browser.
