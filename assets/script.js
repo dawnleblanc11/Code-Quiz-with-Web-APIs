@@ -147,8 +147,17 @@ function showResults(questions, quizContainer, resultsContainer){
 	// show number of correct answers out of total
     // localStorage.setItem(numCorrect,value);
 	resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
-    
+    const studentrecord = {
+        grade: numCorrect,
+        initials: "dl", 
+    };
+    storeResults(studentrecord);
 }; 
+
+
+function storeResults(studentrecord) {
+window.localStorage.setItem('studentscores', JSON.stringify(studentrecord));
+};
 
 //document.createElement("INPUT");
 //   initials.setAttribute("type","text");
@@ -185,8 +194,8 @@ function showResults(questions, quizContainer, resultsContainer){
 startQuizEl.onclick= function (){
     timer();
     showQuestions(javaQuestions, quizContainer);
-}
+};
 // on submit, show results
 submitButton.onclick = function(){
 	showResults(javaQuestions, quizContainer, resultsContainer);
-}
+};
