@@ -1,34 +1,62 @@
-.body{
-
+ /* CSS variables for color palette and fonts*/
+:root {
+    --accent: rgba(19, 8, 74, 0.881);
+    --hovercolor: rgb(175, 175, 243);
+    --favoritefont:Verdana, Geneva, Tahoma, sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;  
 }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-.container {
+  body {
+    font-family: var(--favoritefont);
+  }
+
+  .container {
   
 }
-.viewscoresandtime {
-    
+  /* Nav Style Start*/
 
+  nav {
+  }
+
+  /* Score and Time  Style End*/
+.viewhighscoresandtime {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style: none;
+    padding-top: 25px;
+    margin-right: 5px;
+    font-size: 20px;
 }
 
 .highscoreslink {
-    color: purple;
+    color: var(--accent);
+    font-family:Verdana, Geneva, Tahoma, sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;  
+    padding-left: 10px;
 }
 
 #timerprefix {
-    color: purple;
+    color: black;
+    font-family:Verdana, Geneva, Tahoma, sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;  
+    padding-right: 40px;
 }
 .timerdisplay {
-
+    font-family:Verdana, Geneva, Tahoma, sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;  
 }
-#timer
 
-.welcomepage {
-
+#timer{
+    color: black;
+}
+.welcomepage p{
+    
 }
 .welcomepage h1{
-
-
-}
+   }
 
 .startquizbutton {
 }
@@ -36,23 +64,24 @@
 #startquiz {
     font-size: 20px;
     color:white;
-    background-color: purple;
-    border-radius: 25px;
+    background-color: var(--accent);
+    border-radius: 10px;
     width: 150px;
     height: 50px;
 }
 .on-off {
-    color:white;
+
 }
+
 .largequestion {
     font-weight: bold;
     color:black;
 }
 
 .multiple-choice1 {
-    background-color:purple;
+    background-color:var(--accent);
     width: 200px;   
-    border-radius: 25px;
+    border-radius: 10px;
     height: 50px;  
 }
 .multiple-choice1 h2 {
@@ -62,9 +91,9 @@
 }
 
 .multiple-choice2 {
-    background-color:purple;
+    background-color:var(--accent);
     width: 200px;   
-    border-radius: 25px;
+    border-radius: 10px;
     height: 50px;  
 }
 .multiple-choice2 h2 {
@@ -74,9 +103,9 @@
 }
 
 .multiple-choice3 {
-    background-color:purple;
+    background-color:var(--accent);
     width: 200px;   
-    border-radius: 25px;
+    border-radius: 10px;
     height: 50px;
 }
 
@@ -86,9 +115,9 @@
     margin-left: 25px;
 }
 .multiple-choice4 {
-    background-color:purple;
+    background-color:var(--accent);
     width: 200px;   
-    border-radius: 25px;
+    border-radius: 10px;
     height: 50px;
 }
 .multiple-choice4 h2 {
@@ -98,16 +127,21 @@
 }
 #initalsbox {
     color:white;
-    background-color: purple ;
+    background-color: var(--accent);
 }
 
 #restartquiz {
     color:white;
-    background-color: purple ;
+    background-color: var(--accent);
+    width: 125px;   
+    border-radius: 10px;
+    height: 50px;
 }
 
 #clearhighscores {
     color:white;
-    background-color: purple ;
-  
+    background-color: var(--accent) ;
+    width: 125px;   
+    border-radius: 10px;
+    height: 50px;
 }

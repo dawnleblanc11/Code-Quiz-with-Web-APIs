@@ -1,12 +1,16 @@
+//reference to elements in HTML
 var timerEl = document.getElementById('timer');
 var startQuizEl = document.getElementById('startQuiz');
-
 var quizContainer = document.getElementById('question-here');
 var resultsContainer = document.getElementById('results');
 var submitButton = document.getElementById('grade');
-
-
 var initialContainer = document.getElementById('initials-box')
+
+let score = 0;
+let timeLeft = 0;
+let numCorrect = null;
+var countdown = null;
+var questionsToAsk =[];
 
 // set up questions and answers in a variable
 var javaQuestions = [
@@ -58,8 +62,8 @@ var javaQuestions = [
 // a countdown timer which decreases from starting point
 // to DO: allow for  a restart
 // timer code working
-function timer() {
-  var timeLeft = 70;
+function timer(timeallowed) {
+  var timeLeft = timeallowed;
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
@@ -75,14 +79,46 @@ function timer() {
       timeLeft--;
     } else {
       // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-      timerEl.textContent = '';
+      timerEl.textContent = '0';
+	  stopGame();
       // Use `clearInterval()` to stop the timer
       clearInterval(timeInterval);
     }
   }, 1000);
 }
 
-function showQuestions(questions, quizContainer){
+function startQuiz (){
+	//hide start button
+	var startScreenEl = docuemnt.getElementById("start-screen");
+	startScreenEl.setAttribute("class","hide");
+	
+	// have question area appear
+	questionsEl.removeAttribute("class");
+
+	//start timer at 70 seconds
+	timer(70);
+
+	// show starting time
+	timerEl.textContent= timeLeft;
+
+	//show the first question
+	getQuestion();
+}
+
+function getQuestion() {
+	//get current question object from array
+	var currentQuestion = javaquestions[currentQuestionIndex];
+
+	// update title with current question
+	var titleEl = document.getElementById("question-title");
+	titleEl.textContent = CcurrentQuestion.title;
+
+	//clear out any old question choices
+	selectionEl.innerHTML = "";
+
+	//
+}
+function showQuestion(){
 	// we'll need a place to store the output and the answer choices
 	var output = [];
 	var answers;
@@ -166,12 +202,7 @@ window.localStorage.setItem('studentscores', JSON.stringify(studentrecord));
 
 function askstudentInitals () {
     var ioutput = [];
-    ioutput.push(
-        '<label for="example">Enter your intials:'+
-        '</label>'+ 
-        '<input id="example" type="text" name="text">'+
-        '<input type="submit" value="send"></input>'
-    );
+    ioutput.push( );
     initialContainer.innerHTML= ioutput.join('');
 };
     
@@ -214,7 +245,11 @@ function askstudentInitals () {
 
    //store initals and score to display
  //  studentgrades.push()([numCorrect, "Initials"]);
-//HighScore Tracking
+// Function Called when View HighScores is clicked
+function showHighScores() {
+	startbuttonEl.style.display = "none";
+}
+ // HighScore Tracking
 //initalize a blank array
 //populate array
 //var studentgrades = [ [5,"ab"], [2,"js"], [3, "mk"]];
@@ -231,3 +266,4 @@ timer();
 //submitButton.onclick = function(){
 //	showResults(javaQuestions, quizContainer, resultsContainer,initialContainer);
 //};
+startQuizEl.onclick = StartQuiz;
