@@ -1,8 +1,11 @@
+var timerEl = document.getElementById('timer');
+var startQuizEl = document.getElementById('startQuiz');
+
 var quizContainer = document.getElementById('question-here');
 var resultsContainer = document.getElementById('results');
 var submitButton = document.getElementById('grade');
-var timerEl = document.getElementById('timer');
-var startQuizEl = document.getElementById('startQuiz');
+
+
 var initialContainer = document.getElementById('initials-box')
 
 // set up questions and answers in a variable
@@ -53,21 +56,22 @@ var javaQuestions = [
 	},
 ];
 // a countdown timer which decreases from starting point
-// do we need to allow a reset?
+// to DO: allow for  a restart
+// timer code working
 function timer() {
-  var timeLeft = 10;
+  var timeLeft = 70;
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
     if (timeLeft > 1) {
       // Set the `textContent` of `timerEl` to show the remaining seconds
-      timerEl.textContent = "Timer: " + timeLeft ;
+      timerEl.textContent = timeLeft ;
       // Decrement `timeLeft` by 1
       timeLeft--;
     } else if (timeLeft === 1) {
       // When `timeLeft` is equal to 1, set color to red as a warning
       timerEl.style.color = "red";
-      timerEl.textContent = "Timer: " + timeLeft;
+      timerEl.textContent = timeLeft;
       timeLeft--;
     } else {
       // Once `timeLeft` gets to 0, set `timerEl` to an empty string
@@ -169,7 +173,7 @@ function askstudentInitals () {
         '<input type="submit" value="send"></input>'
     );
     initialContainer.innerHTML= ioutput.join('');
-
+};
     
     //var initials = "cd"
     //  var initals = document.createElement("INPUT");
@@ -186,7 +190,7 @@ function askstudentInitals () {
     // Finally put it where it is supposed to appear.
 //	document.getElementById("newElementId").appendChild(txtNewInputBox);
 
-};
+
 
 //document.createElement("INPUT");
 //   initials.setAttribute("type","text");
@@ -219,12 +223,11 @@ function askstudentInitals () {
 //create leader board
 //var studentgradesSorted = reverse(sort1);
 
-//watch for click to start quiz
-startQuizEl.onclick= function (){
-    timer();
-    showQuestions(javaQuestions, quizContainer);
-};
+//To Do: wait for click to start timer
+timer();
+    
 // on submit, show results
-submitButton.onclick = function(){
-	showResults(javaQuestions, quizContainer, resultsContainer,initialContainer);
-};
+//showQuestions(javaQuestions, quizContainer);
+//submitButton.onclick = function(){
+//	showResults(javaQuestions, quizContainer, resultsContainer,initialContainer);
+//};
