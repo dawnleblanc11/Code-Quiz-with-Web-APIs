@@ -1,6 +1,6 @@
 var quizContainer = document.getElementById('question-here');
 var resultsContainer = document.getElementById('results');
-var submitButton = document.getElementById('grade');
+var grademyquizButton = document.getElementById('grade');
 var timerEl = document.getElementById('timer');
 var startQuizEl = document.getElementById('startQuiz');
 
@@ -150,7 +150,7 @@ startQuizEl.onclick= function (){
     showQuestions(myQuestions, quizContainer);
 }
 // on submit, show results
-submitButton.onclick = function(){
+grademyquizButton.onclick = function(){
 	showResults(myQuestions, quizContainer, resultsContainer);
 }
 //generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);

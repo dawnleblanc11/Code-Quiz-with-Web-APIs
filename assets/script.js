@@ -5,7 +5,7 @@ var timerEl = document.getElementById('timer');
 var startQuizEl = document.getElementById('startQuiz');
 
 // set up questions and answers in a variable
-var myQuestions = [
+var javaQuestions = [
 	{
 		question: "What color is a pumpkin?",
 		answers: {
@@ -51,12 +51,9 @@ var myQuestions = [
 		correctAnswer: 'a'
 	},
 ];
-
-
-
-
-
-function countdown() {
+// a countdown timer which decreases from starting point
+// do we need to allow a reset?
+function timer() {
   var timeLeft = 10;
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
@@ -67,7 +64,8 @@ function countdown() {
       // Decrement `timeLeft` by 1
       timeLeft--;
     } else if (timeLeft === 1) {
-      // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
+      // When `timeLeft` is equal to 1, set color to red as a warning
+      timerEl.style.color = "red";
       timerEl.textContent = "Timer: " + timeLeft;
       timeLeft--;
     } else {
@@ -142,17 +140,53 @@ function showResults(questions, quizContainer, resultsContainer){
 		else{
 			// color the answers red
 			answerContainers[i].style.color = 'red';
+            //add timer decrement here
 		}
 	}
 
 	// show number of correct answers out of total
+    // localStorage.setItem(numCorrect,value);
 	resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
-}
+    
+}; 
+
+//document.createElement("INPUT");
+//   initials.setAttribute("type","text");
+    // ask initials
+  //function askinitals() {
+   // var initals = document.createElement("INPUT");
+   //initals.setAttribute("type","text");
+//   const studentrecord = {
+ //   grade: numCorrect,
+ //   initials: initials, };
+
+    
+    
+ //   window.localStorage.setItem('studentscores', JSON.stringify(studentrecord));
+    //ask for initials
+   //var lbl=document.createElement("label");
+    //   lbl.setAttribute("Iniials");
+   //    lbl.setAttribute("Please enter your initials: ");
+  //     document.body.appendChild(lbl);
+// dynamically set up input for initals after results
+
+   //store initals and score to display
+ //  studentgrades.push()([numCorrect, "Initials"]);
+//HighScore Tracking
+//initalize a blank array
+//populate array
+//var studentgrades = [ [5,"ab"], [2,"js"], [3, "mk"]];
+//sort array
+//var sort1 = studentgrades.sort();
+//create leader board
+//var studentgradesSorted = reverse(sort1);
+
+//watch for click to start quiz
 startQuizEl.onclick= function (){
-    countdown();
-    showQuestions(myQuestions, quizContainer);
+    timer();
+    showQuestions(javaQuestions, quizContainer);
 }
 // on submit, show results
 submitButton.onclick = function(){
-	showResults(myQuestions, quizContainer, resultsContainer);
+	showResults(javaQuestions, quizContainer, resultsContainer);
 }
