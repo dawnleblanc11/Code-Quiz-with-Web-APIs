@@ -3,6 +3,7 @@ var resultsContainer = document.getElementById('results');
 var submitButton = document.getElementById('grade');
 var timerEl = document.getElementById('timer');
 var startQuizEl = document.getElementById('startQuiz');
+var initialContainer = document.getElementById('initials-box')
 
 // set up questions and answers in a variable
 var javaQuestions = [
@@ -112,7 +113,6 @@ function showQuestions(questions, quizContainer){
 	quizContainer.innerHTML = output.join('');
 }
 
-
 function showResults(questions, quizContainer, resultsContainer){
 	
 	// gather answer containers from our quiz
@@ -145,6 +145,7 @@ function showResults(questions, quizContainer, resultsContainer){
 	}
 
 	// show number of correct answers out of total
+   
     // localStorage.setItem(numCorrect,value);
 	resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
     const studentrecord = {
@@ -154,9 +155,37 @@ function showResults(questions, quizContainer, resultsContainer){
     storeResults(studentrecord);
 }; 
 
-
+ // storing grade and initals
 function storeResults(studentrecord) {
 window.localStorage.setItem('studentscores', JSON.stringify(studentrecord));
+};
+
+function askstudentInitals () {
+    var ioutput = [];
+    ioutput.push(
+        '<label for="example">Enter your intials:'+
+        '</label>'+ 
+        '<input id="example" type="text" name="text">'+
+        '<input type="submit" value="send"></input>'
+    );
+    initialContainer.innerHTML= ioutput.join('');
+
+    
+    //var initials = "cd"
+    //  var initals = document.createElement("INPUT");
+   // initals.setAttribute("type","text"); 
+    //initialContainer.innerHTML = (initials);
+
+//function createNewElement() {
+    // First create a DIV element.
+//	var txtNewInputBox = document.createElement('div');
+
+    // Then add the content (a new input box) of the element.
+//	txtNewInputBox.innerHTML = "<input type='text' id='newInputBox'>";
+
+    // Finally put it where it is supposed to appear.
+//	document.getElementById("newElementId").appendChild(txtNewInputBox);
+
 };
 
 //document.createElement("INPUT");
@@ -197,5 +226,5 @@ startQuizEl.onclick= function (){
 };
 // on submit, show results
 submitButton.onclick = function(){
-	showResults(javaQuestions, quizContainer, resultsContainer);
+	showResults(javaQuestions, quizContainer, resultsContainer,initialContainer);
 };

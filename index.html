@@ -9,37 +9,62 @@
 </head>
 <body>
     <div class="container">
-<!-- click to be brought to another screen -->
-    <div class="scoreboard">
-        <div>
-            <button id="highscores">View High Scores</button> 
+    <!-- treat as navbar -->
+    <!-- high scores appears in upper left of screen until highscores are displayed -->
+    <!-- timer appears in upper right of screen until highscores are displayed -->
+     <nav>
+      <div class="viewhighscoresandtime">
+            <div class="highscoreslink">
+                <p id="highscores">View High Scores</p> 
+            </div>
+            <div class="timerdisplay">
+              <p id="timeprefix">Timer:</p>
+              <p id="timer">0</p>
+            </div>
+      </div>
+    </nav>
+    <!-- Page that appears on oppening of application -->
+    <div class="welcomepage">
+        <h1> Coding Quiz Challenge: Javascript </h1>
+        <p> Try to answer the following code-related questions within the timelimit. </p>
+        <p> Keep in mind that incorrect answers will penalize your score/time by ten seconds! </p>
+    </div>
+    <div class="startquizbutton">
+      <button id="startquiz">Start Quiz</button> 
+    </div>
+    <!-- Question and Answer placeholder area for various quiz questions and answers -->
+    <div class="on-off" id="question-box">
+      <h1 class="largequestion"id= "question-here">Placeholder Question</h1>
+      <h2 class="multiple-choice 1">m choice 1</h2>
+      <h2 class="multiple-choice 2">m choice 2</h2>    
+      <h2 class="multiple-choice 3">m choice 3</h2>
+      <h2 class="multiple-choice 4">m choice 4</h2>   
+    </div>
+  <!-- All Done page- presents score final score and asks for intials-->
+        <div class="alldonepage">
+          <h3 id="alldone"> All Done!</h3>
+          <p> Your final score is: xx .</p>
+          <label for="initals-box">Enter intials:</label> 
+          <input id="initals-box" type="text" name="text">
+          <input type="submit" value="Submit"></input>   
         </div>
-        <div class="studentname">Student One</div>
-        <div class="studentname">Student Two</div>
-        <div class="studentgrade">0</div>
-        <div class="studentgrade">0</div>
 
+   <!-- Final Page- shows array scores sorted by highest- remove timer and highscore -->
+    <div class="highscorepage">
+          <h1> High Scores </h1>
+          <div>
+            <p> place high score array here</p>
+          </div>
+      </div>
+      <div class="restartquizbutton">
+        <button id="restartquiz">Go Back</button> 
+      </div>
+      <div class="clearhighscoresbutton">
+        <button id="clearhighscores">ClearHighScores</button> 
+      </div>
     </div>
-    <div>
-        Welcome to your JavaScript Quiz.
-    </div>
-    </div>
-    <div>
-    <button id="startQuiz">Start my quiz please:</button> 
-    </div>
-    <h1 id="timer"></h1>
-  <div class="on-off" id="question-box">
-      <h2 class="question-spot" id="question-here"></h2>
-      <div class="multiple-choice" id="answer-buttons">     
-    </div>
-  </div> 
-  <h3 id="results">
-  </h3>
-  <div>
-    <button id="grade">Grade My Quiz</button> 
   </div>
-  </div>
-</div>
+
   <script src="./assets/script.js"></script>
 </body>
 </html>
