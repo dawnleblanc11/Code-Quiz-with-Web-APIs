@@ -11,6 +11,7 @@ var multichoice1El = document.getElementById("multiple-choice1");
 var multichoice2El = document.getElementById("multiple-choice2");
 var multichoice3El = document.getElementById("multiple-choice3");
 var multichoice4El = document.getElementById("multiple-choice4");
+var instantfeedbackEl = document.getElementById("instant-feedback");
 // Nav bar appears on login View High Scores Choice Timer: 0
 // Start timer upon click of Start Quiz
 // Clean screen of Text and startquiz button;
@@ -35,9 +36,31 @@ function startQuiz (){
 	multichoice2El.innerHTML= "Answer b";
 	multichoice3El.innerHTML= "Answer c";
 	multichoice4El.innerHTML= "Answer d";
-	
+    
+	//listen for click event
+	multichoice1El.addEventListener("click", selecteda);
+	multichoice2El.addEventListener("click", selectedb);
+	multichoice3El.addEventListener("click", selectedc);
+	multichoice4El.addEventListener("click", selectedd);
+
+	//clear feedback section
+	//load next question
 };
 
+
+// instant feedback
+function selecteda() {
+	instantfeedbackEl.innerHTML = "Correct";
+};
+function selectedb() {
+	instantfeedbackEl.innerHTML = "Choose a better next time";
+};
+function selectedc() {
+	instantfeedbackEl.innerHTML = "Close but not Exactly Correct";
+};
+function selectedd() {
+	instantfeedbackEl.innerHTML = "Keep Trying, You Will Get It";
+};
 
 // set up questions and answers in a variable
 var javaQuestions = [

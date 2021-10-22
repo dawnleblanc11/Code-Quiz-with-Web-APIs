@@ -119,6 +119,10 @@
     margin-left: 25px;
 }
 
+#instant-feedback {
+    color: grey;
+    border-top: dashed grey;
+}
 .alldonepage {
     display:none;
 }
