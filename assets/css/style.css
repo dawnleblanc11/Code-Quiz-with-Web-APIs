@@ -123,30 +123,10 @@
     color: grey;
     border-top: dashed grey;
 }
-.alldonepage {
+#alldonepage {
     display:none;
 }
 #initalsbox {
     color:white;
     background-color: var(--accent);
-}
-
-.highscorepage {
-    display:none;
-}
-
-#restartquiz {
-    color:white;
-    background-color: var(--accent);
-    width: 125px;   
-    border-radius: 10px;
-    height: 50px;
-}
-
-#clearhighscores {
-    color:white;
-    background-color: var(--accent) ;
-    width: 125px;   
-    border-radius: 10px;
-    height: 50px;
 }

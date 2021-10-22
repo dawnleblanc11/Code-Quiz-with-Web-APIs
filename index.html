@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Java Code Quiz</title>
-    <link rel="stylesheet" href="./assets/style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 <body>
     <div class="container">
@@ -15,7 +15,7 @@
      <nav>
       <div class="viewhighscoresandtime">
             <div class="highscoreslink">
-                <p id="highscores">View high scores</p> 
+              <a href="./assets/html/highscores.html">View high scores</a>
             </div>
             <div class="timerdisplay">
               <p id="timerprefix">Time:</p>
@@ -48,10 +48,10 @@
         <h2  id="multiple-choice4">m choice 4</h2>   
       </br> 
       <br>
-      <h2 id="instant-feedback"> Click your best answer"</h2>
+      <h2 id="instant-feedback"> Click your best answer</h2>
     </div>
   <!-- All Done page- presents score final score and asks for intials-->
-        <div class="alldonepage">
+        <div class="alldonepage" id="alldonepage">
           <h3 id="alldone"> All Done!</h3>
           <p> Your final score is: xx .</p>
           <label for="initals-box">Enter intials:</label> 
@@ -59,19 +59,8 @@
           <input type="submit" value="Submit"></input>   
         </div>
 
-   <!-- Final Page- shows array scores sorted by highest- remove timer and highscore -->
-    <div class="highscorepage">
-          <h1> High Scores </h1>
-          <div class= "highscorearray">
-            <p> place high score array here</p>
-          </div>
-            <div >
-              <button id="restartquiz">Go Back</button> 
-            </div>
-            <div >
-              <button id="clearhighscores">Clear High Scores</button> 
-            </div>
+   <!-- Final Page In alternative HTML-->
     </div>
 </body>
-<script src="./assets/script.js"></script>
+<script src="./assets/js/script.js"></script>
 </html>

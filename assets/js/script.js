@@ -12,6 +12,7 @@ var multichoice2El = document.getElementById("multiple-choice2");
 var multichoice3El = document.getElementById("multiple-choice3");
 var multichoice4El = document.getElementById("multiple-choice4");
 var instantfeedbackEl = document.getElementById("instant-feedback");
+var alldonepageEl = document.getElementById("alldonepage");
 // Nav bar appears on login View High Scores Choice Timer: 0
 // Start timer upon click of Start Quiz
 // Clean screen of Text and startquiz button;
@@ -45,6 +46,9 @@ function startQuiz (){
 
 	//clear feedback section
 	//load next question
+	
+
+
 };
 
 
@@ -62,6 +66,14 @@ function selectedd() {
 	instantfeedbackEl.innerHTML = "Keep Trying, You Will Get It";
 };
 
+//timer = 0 or questions = 0
+	//remove question container
+	
+//all done page- need to find the right place for this
+function alldone() {
+	quizContainerEl.style.display = "none";
+	alldonepageEl.style.display= "inherit";
+}
 // set up questions and answers in a variable
 var javaQuestions = [
 	{
@@ -274,3 +286,4 @@ function showHighScores() {
 //startQuiz;
 //document.getElementById("startQuiz").addEventListener("click", startQuiz);
 startQuizEl.addEventListener("click", startQuiz);
+
