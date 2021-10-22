@@ -16,7 +16,8 @@ var alldonepageEl = document.getElementById("alldonepage");
 // Nav bar appears on login View High Scores Choice Timer: 0
 // Start timer upon click of Start Quiz
 // Clean screen of Text and startquiz button;
-
+// Initialize array to score value of each question answered
+let individualquestionscores = [ ];
 
 function startQuiz (){
 	//start timer at 70 seconds
@@ -26,6 +27,16 @@ function startQuiz (){
 		multichoiceanswerB=[ ];
 		multichoiceanswerC=[ ];
 		multichoiceanswerD=[ ];
+	//clear out any old questions
+	questionhereEl.innerHTML = "";
+	// clear out any old answers
+	multichoice1El.innerHTML= "";
+	multichoice2El.innerHTML= "";
+	multichoice3El.innerHTML= "";
+	multichoice4El.innerHTML= "";
+	// clearout instant feedback section
+	instantfeedbackEl.innerHTML = "";
+
 	//hide welcomepage
 	welcomepageEl.remove();
 	// remove startbutton
@@ -33,16 +44,17 @@ function startQuiz (){
 	// getQuestion();
 	quizContainerEl.style.display = "inherit";
 	// have question area appear
-
+	//figureout why it loops too fast and doesn't wait for click
+  for (i=0; i<1; i++) {
     // pulls first question and answers from array
-	var displayquestion = javaQuestions[0].question;
-	var multichoiceanswerA = javaQuestions[0].answers.a;
-	var multichoiceanswerB = javaQuestions[0].answers.b;
-	var multichoiceanswerC = javaQuestions[0].answers.c;
-	var multichoiceanswerD = javaQuestions[0].answers.d;
-	// insert first question
+	var displayquestion = javaQuestions[i].question;
+	var multichoiceanswerA = javaQuestions[i].answers.a;
+	var multichoiceanswerB = javaQuestions[i].answers.b;
+	var multichoiceanswerC = javaQuestions[i].answers.c;
+	var multichoiceanswerD = javaQuestions[i].answers.d;
+	// insert question
 	questionhereEl.innerHTML= displayquestion;
-	//show the first answers
+	//show the answers
 	multichoice1El.innerHTML= multichoiceanswerA;
 	multichoice2El.innerHTML= multichoiceanswerB;
 	multichoice3El.innerHTML= multichoiceanswerC;
@@ -52,28 +64,54 @@ function startQuiz (){
 	multichoice1El.addEventListener("click", selecteda);
 	multichoice2El.addEventListener("click", selectedb);
 	multichoice3El.addEventListener("click", selectedc);
-	multichoice4El.addEventListener("click", selectedd);
-
-	//clear feedback section
-	//load next question
-	
-
-
+	multichoice4El.addEventListener("click", selectedd);	
+ };
 };
 
 
 // instant feedback
 function selecteda() {
-	instantfeedbackEl.innerHTML = "Correct";
+	var finalanswera = "a";
+	if (finalanswera == javaQuestions[0].correctAnswer) {
+    instantfeedbackEl.innerHTML = "Correct";
+	individualquestionscores.push(10);
+} else {
+	instantfeedbackEl.innerHTML = "You will get the next one";
+	individualquestionscores.push(-5);
 };
+};
+
 function selectedb() {
-	instantfeedbackEl.innerHTML = "Choose a better next time";
+	var finalanswerb = "b";
+	if (finalanswerb == javaQuestions[0].correctAnswer) {
+    instantfeedbackEl.innerHTML = "Correct";
+	individualquestionscores.push(10);
+} else {
+	instantfeedbackEl.innerHTML = "Choose better next time";
+	individualquestionscores.push(-5);
 };
+};
+
 function selectedc() {
+	var finalanswerc = "c";
+	if (finalanswerc == javaQuestions[0].correctAnswer) {
+    instantfeedbackEl.innerHTML = "Correct";
+	individualquestionscores.push(10);
+} else {
 	instantfeedbackEl.innerHTML = "Close but not Exactly Correct";
+	individualquestionscores.push(-5);
 };
+};
+
 function selectedd() {
+	var finalanswerd = "d";
+	if (finalanswerd == javaQuestions[0].correctAnswer) {
+	instantfeedbackEl.innerHTML = "Correct";
+	individualquestionscores.push(10);
+} else {
 	instantfeedbackEl.innerHTML = "Keep Trying, You Will Get It";
+	individualquestionscores.push(-5);
+}
 };
 
 //timer = 0 or questions = 0
@@ -85,6 +123,7 @@ function alldone() {
 	alldonepageEl.style.display= "inherit";
 }
 // set up questions and answers in a variable
+// need to update for javascript questions
 var javaQuestions = [
 	{
 		question: "What color is a pumpkin?",
@@ -139,7 +178,7 @@ var javaQuestions = [
 ];
 // a countdown timer which decreases from starting point
 // to DO: allow for  a restart
-// timer code stopped displaying
+// create a decrement for wrong answers
 function timer(timetotal) {
   var timeLeft = 70;
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
@@ -164,21 +203,19 @@ function timer(timetotal) {
     }
   }, 1000);
 }
-
+// adds up array of individual scores to create final score
+function finalscore (individualquestionscores) {
+	let finalscore = 0;
+	for (let i=0; i<individualquestionscores.length;i++) {
+		finalscore += individualquestionscores[i];
+};
+};
 /*
 
 function getQuestion() {
 	//get current question object from array
 	var currentQuestion = javaquestions[currentQuestionIndex];
 
-	// update title with current question
-	var titleEl = document.getElementById("question-title");
-	titleEl.textContent = CcurrentQuestion.title;
-
-	//clear out any old question choices
-	selectionEl.innerHTML = "";
-
-	//
 };
 
 function showQuestion(){
@@ -302,4 +339,5 @@ function showHighScores() {
 //startQuiz;
 //document.getElementById("startQuiz").addEventListener("click", startQuiz);
 startQuizEl.addEventListener("click", startQuiz);
+console.log(individualquestionscores);
 
