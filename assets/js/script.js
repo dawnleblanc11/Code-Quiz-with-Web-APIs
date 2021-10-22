@@ -21,6 +21,11 @@ var alldonepageEl = document.getElementById("alldonepage");
 function startQuiz (){
 	//start timer at 70 seconds
 		timer();
+		displayquestion=[ ];
+		multichoiceanswerA=[ ];
+		multichoiceanswerB=[ ];
+		multichoiceanswerC=[ ];
+		multichoiceanswerD=[ ];
 	//hide welcomepage
 	welcomepageEl.remove();
 	// remove startbutton
@@ -29,14 +34,19 @@ function startQuiz (){
 	quizContainerEl.style.display = "inherit";
 	// have question area appear
 
-    // pulls first question and ansers from array
+    // pulls first question and answers from array
+	var displayquestion = javaQuestions[0].question;
+	var multichoiceanswerA = javaQuestions[0].answers.a;
+	var multichoiceanswerB = javaQuestions[0].answers.b;
+	var multichoiceanswerC = javaQuestions[0].answers.c;
+	var multichoiceanswerD = javaQuestions[0].answers.d;
 	// insert first question
-	questionhereEl.innerHTML="Question Appears";
+	questionhereEl.innerHTML= displayquestion;
 	//show the first answers
-	multichoice1El.innerHTML= "Answer a";
-	multichoice2El.innerHTML= "Answer b";
-	multichoice3El.innerHTML= "Answer c";
-	multichoice4El.innerHTML= "Answer d";
+	multichoice1El.innerHTML= multichoiceanswerA;
+	multichoice2El.innerHTML= multichoiceanswerB;
+	multichoice3El.innerHTML= multichoiceanswerC;
+	multichoice4El.innerHTML= multichoiceanswerD;
     
 	//listen for click event
 	multichoice1El.addEventListener("click", selecteda);
@@ -81,7 +91,8 @@ var javaQuestions = [
 		answers: {
 			a: 'green',
 			b: 'orange',
-			c: 'blue'
+			c: 'blue',
+			d: 'green'
 		},
 		correctAnswer: 'b'
 	},
@@ -90,7 +101,8 @@ var javaQuestions = [
 		answers: {
 			a: 'purple',
 			b: 'black',
-			c: 'orange'
+			c: 'orange',
+			d: 'white'
 		},
 		correctAnswer: 'b'
 	}, 
@@ -100,6 +112,7 @@ var javaQuestions = [
 			a: 'white',
 			b: 'blue',
             c: 'pink',
+			d: 'purple'
 		},
 		correctAnswer: 'a'
 	},
@@ -108,7 +121,8 @@ var javaQuestions = [
 		answers: {
 			a: 'green, white, red',
 			b: 'pink, blue, white',
-            c: "orange,white,yellow"
+            c: "orange,white,yellow",
+			d: "purple, orange, green"
 		},
 		correctAnswer: 'c'
 	},
@@ -117,6 +131,8 @@ var javaQuestions = [
 		answers: {
 			a: 'yes',
 			b: 'no',
+			c: 'maybe',
+			d: 'have not met one'
 		},
 		correctAnswer: 'a'
 	},
