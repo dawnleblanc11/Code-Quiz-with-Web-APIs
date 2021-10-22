@@ -61,7 +61,7 @@
 .startquizbutton {
 }
 
-#startquiz {
+#startQuiz {
     font-size: 20px;
     color:white;
     background-color: var(--accent);
@@ -70,7 +70,7 @@
     height: 50px;
 }
 .on-off {
-
+    display: none;
 }
 
 .largequestion {
@@ -124,6 +124,13 @@
     font-size: 25px;
     color:white;
     margin-left: 25px;
+}
+.alldonepage {
+    display:none;
+}
+
+.highscorepage {
+    display:none;
 }
 #initalsbox {
     color:white;

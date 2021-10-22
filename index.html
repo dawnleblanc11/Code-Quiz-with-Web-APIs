@@ -24,28 +24,28 @@
       </div>
     </nav>
     <!-- Page that appears on oppening of application -->
-    <div class="welcomepage">
+    <div id="welcomepage">
         <h1> Coding Quiz Challenge: Javascript </h1>
         <p> Try to answer the following code-related questions within the timelimit. </p>
         <p> Keep in mind that incorrect answers will penalize your score/time by ten seconds! </p>
     </div>
     <div class="startquizbutton">
-      <button id="startquiz">Start Quiz</button> 
+      <button id="startQuiz">Start Quiz</button> 
     </div>
     <!-- Question and Answer placeholder area for various quiz questions and answers -->
     <div class="on-off" id="question-box">
       <h1 class="largequestion"id= "question-here">Placeholder Question</h1>
-      <div class="multiple-choice1">
-      <h2>m choice 1</h2>
+      <div >
+      <h2 class="multiple-choice1" id="multiple-choice1">m choice 1</h2>
       </div>
-      <div class="multiple-choice2">
-      <h2>m choice 2</h2>    
+      <div>
+      <h2 class="multiple-choice2" id="multiple-choice2">m choice 2</h2>    
       </div>
-      <div class="multiple-choice3">
-        <h2>m choice 3</h2>
+      <div>
+        <h2 class="multiple-choice3" id="multiple-choice3">m choice 3</h2>
       </div>
-      <div class="multiple-choice4">
-        <h2 >m choice 4</h2>   
+      <div>
+        <h2 class="multiple-choice4" id="multiple-choice4" >m choice 4</h2>   
       </div> 
     </div>
   <!-- All Done page- presents score final score and asks for intials-->
@@ -63,16 +63,13 @@
           <div class= "highscorearray">
             <p> place high score array here</p>
           </div>
-      </div>
-      <div class="restartquizbutton">
-        <button id="restartquiz">Go Back</button> 
-      </div>
-      <div class="clearhighscoresbutton">
-        <button id="clearhighscores">Clear High Scores</button> 
-      </div>
+            <div >
+              <button id="restartquiz">Go Back</button> 
+            </div>
+            <div >
+              <button id="clearhighscores">Clear High Scores</button> 
+            </div>
     </div>
-  
-
-  <script src="./assets/script.js"></script>
 </body>
+<script src="./assets/script.js"></script>
 </html>

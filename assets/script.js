@@ -5,12 +5,35 @@ var quizContainer = document.getElementById('question-here');
 var resultsContainer = document.getElementById('results');
 var submitButton = document.getElementById('grade');
 var initialContainer = document.getElementById('initials-box')
+var welcomepageEl = document.getElementById("welcomepage");
+var multichoice1El = document.getElementById("multiple-choice1")
+var multichoice2El = document.getElementById("multiple-choice2")
+var multichoice3El = document.getElementById("multiple-choice3")
+var multichoice4El = document.getElementById("multiple-choice4")
+// Nav bar appears on login View High Scores Choice Timer: 0
+// Start timer upon click of Start Quiz
+// Clean screen of Text and startquiz button;
 
-let score = 0;
-let timeLeft = 0;
-let numCorrect = null;
-var countdown = null;
-var questionsToAsk =[];
+
+function startQuiz (){
+	//start timer at 70 seconds
+		timer();
+	//hide welcomepage
+	welcomepageEl.remove();
+	// remove startbutton
+	startQuizEl.remove();
+	// getQuestion();
+	// pulls first question and ansers from array
+	// have question area appear
+	quizContainer.innerHTML="Question Appears";
+	//show the first answers
+	multichoice1El.innerHTML= "Answer a";
+	multichoice2El.innerHTML= "Answer b";
+	multichoice3El.innerHTML= "Answer c";
+	multichoice4El.innerHTML= "Answer d";
+	
+};
+
 
 // set up questions and answers in a variable
 var javaQuestions = [
@@ -61,9 +84,9 @@ var javaQuestions = [
 ];
 // a countdown timer which decreases from starting point
 // to DO: allow for  a restart
-// timer code working
-function timer(timeallowed) {
-  var timeLeft = timeallowed;
+// timer code stopped displaying
+function timer(timetotal) {
+  var timeLeft = 70;
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
@@ -80,30 +103,14 @@ function timer(timeallowed) {
     } else {
       // Once `timeLeft` gets to 0, set `timerEl` to an empty string
       timerEl.textContent = '0';
-	  stopGame();
+	  //stopGame();
       // Use `clearInterval()` to stop the timer
       clearInterval(timeInterval);
     }
   }, 1000);
 }
 
-function startQuiz (){
-	//hide start button
-	var startScreenEl = docuemnt.getElementById("start-screen");
-	startScreenEl.setAttribute("class","hide");
-	
-	// have question area appear
-	questionsEl.removeAttribute("class");
-
-	//start timer at 70 seconds
-	timer(70);
-
-	// show starting time
-	timerEl.textContent= timeLeft;
-
-	//show the first question
-	getQuestion();
-}
+/*
 
 function getQuestion() {
 	//get current question object from array
@@ -117,7 +124,8 @@ function getQuestion() {
 	selectionEl.innerHTML = "";
 
 	//
-}
+};
+
 function showQuestion(){
 	// we'll need a place to store the output and the answer choices
 	var output = [];
@@ -151,7 +159,7 @@ function showQuestion(){
 
 	// finally combine our output list into one string of html and put it on the page
 	quizContainer.innerHTML = output.join('');
-}
+};
 
 function showResults(questions, quizContainer, resultsContainer){
 	
@@ -206,33 +214,6 @@ function askstudentInitals () {
     initialContainer.innerHTML= ioutput.join('');
 };
     
-    //var initials = "cd"
-    //  var initals = document.createElement("INPUT");
-   // initals.setAttribute("type","text"); 
-    //initialContainer.innerHTML = (initials);
-
-//function createNewElement() {
-    // First create a DIV element.
-//	var txtNewInputBox = document.createElement('div');
-
-    // Then add the content (a new input box) of the element.
-//	txtNewInputBox.innerHTML = "<input type='text' id='newInputBox'>";
-
-    // Finally put it where it is supposed to appear.
-//	document.getElementById("newElementId").appendChild(txtNewInputBox);
-
-
-
-//document.createElement("INPUT");
-//   initials.setAttribute("type","text");
-    // ask initials
-  //function askinitals() {
-   // var initals = document.createElement("INPUT");
-   //initals.setAttribute("type","text");
-//   const studentrecord = {
- //   grade: numCorrect,
- //   initials: initials, };
-
     
     
  //   window.localStorage.setItem('studentscores', JSON.stringify(studentrecord));
@@ -257,13 +238,12 @@ function showHighScores() {
 //var sort1 = studentgrades.sort();
 //create leader board
 //var studentgradesSorted = reverse(sort1);
-
-//To Do: wait for click to start timer
-timer();
     
 // on submit, show results
 //showQuestions(javaQuestions, quizContainer);
 //submitButton.onclick = function(){
 //	showResults(javaQuestions, quizContainer, resultsContainer,initialContainer);
-//};
-startQuizEl.onclick = StartQuiz;
+//};*/
+//startQuiz;
+//document.getElementById("startQuiz").addEventListener("click", startQuiz);
+startQuizEl.addEventListener("click", startQuiz);
