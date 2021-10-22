@@ -1,7 +1,22 @@
-
-.highscorepage {
-    display:none;
+:root {
+    --accent: rgba(19, 8, 74, 0.881);
+    --hovercolor: rgb(175, 175, 243);
+    --favoritefont:Verdana, Geneva, Tahoma, sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;  
 }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: var(--favoritefont);
+   
+  }
+
+  .highscorepage h1 {
+      
+  }
 
 #restartquiz {
     color:white;
