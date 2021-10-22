@@ -1,15 +1,16 @@
 //reference to elements in HTML
 var timerEl = document.getElementById('timer');
 var startQuizEl = document.getElementById('startQuiz');
-var quizContainer = document.getElementById('question-here');
-var resultsContainer = document.getElementById('results');
+var quizContainerEl = document.getElementById('question-box');
+var resultsContainerEl = document.getElementById('results');
 var submitButton = document.getElementById('grade');
 var initialContainer = document.getElementById('initials-box')
 var welcomepageEl = document.getElementById("welcomepage");
-var multichoice1El = document.getElementById("multiple-choice1")
-var multichoice2El = document.getElementById("multiple-choice2")
-var multichoice3El = document.getElementById("multiple-choice3")
-var multichoice4El = document.getElementById("multiple-choice4")
+var questionhereEl = document.getElementById("question-here")
+var multichoice1El = document.getElementById("multiple-choice1");
+var multichoice2El = document.getElementById("multiple-choice2");
+var multichoice3El = document.getElementById("multiple-choice3");
+var multichoice4El = document.getElementById("multiple-choice4");
 // Nav bar appears on login View High Scores Choice Timer: 0
 // Start timer upon click of Start Quiz
 // Clean screen of Text and startquiz button;
@@ -23,9 +24,12 @@ function startQuiz (){
 	// remove startbutton
 	startQuizEl.remove();
 	// getQuestion();
-	// pulls first question and ansers from array
+	quizContainerEl.style.display = "inherit";
 	// have question area appear
-	quizContainer.innerHTML="Question Appears";
+
+    // pulls first question and ansers from array
+	// insert first question
+	questionhereEl.innerHTML="Question Appears";
 	//show the first answers
 	multichoice1El.innerHTML= "Answer a";
 	multichoice2El.innerHTML= "Answer b";

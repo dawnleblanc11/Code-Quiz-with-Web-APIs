@@ -69,7 +69,7 @@
     width: 150px;
     height: 50px;
 }
-.on-off {
+#question-box {
     display: none;
 }
 
@@ -78,63 +78,57 @@
     color:black;
 }
 
-.multiple-choice1 {
+
+#multiple-choice1 {
+    background-color:var(--accent);
+    width: 200px;   
+    border-radius: 10px;
+    height: 50px; 
+    font-size: 25px;
+    color:white;
+    margin-left: 25px;
+}
+
+#multiple-choice2 {
     background-color:var(--accent);
     width: 200px;   
     border-radius: 10px;
     height: 50px;  
-}
-.multiple-choice1 h2 {
     font-size: 25px;
     color:white;
     margin-left: 25px;
 }
 
-.multiple-choice2 {
-    background-color:var(--accent);
-    width: 200px;   
-    border-radius: 10px;
-    height: 50px;  
-}
-.multiple-choice2 h2 {
-    font-size: 25px;
-    color:white;
-    margin-left: 25px;
-}
-
-.multiple-choice3 {
+#multiple-choice3 {
     background-color:var(--accent);
     width: 200px;   
     border-radius: 10px;
     height: 50px;
-}
-
-.multiple-choice3 h2 {
     font-size: 25px;
     color:white;
     margin-left: 25px;
 }
-.multiple-choice4 {
+
+#multiple-choice4 {
     background-color:var(--accent);
     width: 200px;   
     border-radius: 10px;
     height: 50px;
-}
-.multiple-choice4 h2 {
     font-size: 25px;
     color:white;
     margin-left: 25px;
 }
+
 .alldonepage {
-    display:none;
-}
-
-.highscorepage {
     display:none;
 }
 #initalsbox {
     color:white;
     background-color: var(--accent);
+}
+
+.highscorepage {
+    display:none;
 }
 
 #restartquiz {
