@@ -13,23 +13,25 @@
     font-family: var(--favoritefont);
    
   }
+  .highscorepage {
+      
+  };
 
   .highscorepage h1 {
-      
+    font-weight: bold;
+    color:black;  
   }
 
-#restartquiz {
+#restartquiz, #clearhighscores {
     color:white;
     background-color: var(--accent);
     width: 125px;   
     border-radius: 10px;
     height: 50px;
 }
-
-#clearhighscores {
-    color:white;
-    background-color: var(--accent) ;
-    width: 125px;   
-    border-radius: 10px;
-    height: 50px;
+#restartquiz:hover,
+#clearhighscores:hover
+{
+    background-color: var(--hovercolor);
 }
+

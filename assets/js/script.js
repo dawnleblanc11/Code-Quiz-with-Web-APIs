@@ -13,11 +13,14 @@ var multichoice3El = document.getElementById("multiple-choice3");
 var multichoice4El = document.getElementById("multiple-choice4");
 var instantfeedbackEl = document.getElementById("instant-feedback");
 var alldonepageEl = document.getElementById("alldonepage");
+var finalscoredisplayEl=document.getElementById("finalscoredisplay");
+
 // Nav bar appears on login View High Scores Choice Timer: 0
 // Start timer upon click of Start Quiz
 // Clean screen of Text and startquiz button;
 // Initialize array to score value of each question answered
 let individualquestionscores = [ ];
+let qindex = 0;
 
 function startQuiz (){
 	//start timer at 70 seconds
@@ -44,30 +47,31 @@ function startQuiz (){
 	// getQuestion();
 	quizContainerEl.style.display = "inherit";
 	// have question area appear
-	//figureout why it loops too fast and doesn't wait for click
-  for (i=0; i<1; i++) {
-    // pulls first question and answers from array
-	var displayquestion = javaQuestions[i].question;
-	var multichoiceanswerA = javaQuestions[i].answers.a;
-	var multichoiceanswerB = javaQuestions[i].answers.b;
-	var multichoiceanswerC = javaQuestions[i].answers.c;
-	var multichoiceanswerD = javaQuestions[i].answers.d;
-	// insert question
-	questionhereEl.innerHTML= displayquestion;
-	//show the answers
-	multichoice1El.innerHTML= multichoiceanswerA;
-	multichoice2El.innerHTML= multichoiceanswerB;
-	multichoice3El.innerHTML= multichoiceanswerC;
-	multichoice4El.innerHTML= multichoiceanswerD;
-    
-	//listen for click event
-	multichoice1El.addEventListener("click", selecteda);
-	multichoice2El.addEventListener("click", selectedb);
-	multichoice3El.addEventListener("click", selectedc);
-	multichoice4El.addEventListener("click", selectedd);	
- };
+	nextquestion(0);
 };
 
+function nextquestion(qindex) {
+	//figureout why it loops too fast and doesn't wait for click
+	var displayquestion = javaQuestions[qindex].question;
+	// pulls question and answers from array
+	var multichoiceanswerA = javaQuestions[qindex].answers.a;
+	var multichoiceanswerB = javaQuestions[qindex].answers.b;
+	var multichoiceanswerC = javaQuestions[qindex].answers.c;
+	var multichoiceanswerD = javaQuestions[qindex].answers.d;
+		// insert question
+   questionhereEl.innerHTML= displayquestion;
+   //show the answers
+   multichoice1El.innerHTML= multichoiceanswerA;
+   multichoice2El.innerHTML= multichoiceanswerB;
+   multichoice3El.innerHTML= multichoiceanswerC;
+   multichoice4El.innerHTML= multichoiceanswerD;
+   
+   //listen for click event
+   multichoice1El.addEventListener("click", selecteda);
+   multichoice2El.addEventListener("click", selectedb);
+   multichoice3El.addEventListener("click", selectedc);
+   multichoice4El.addEventListener("click", selectedd);
+};
 
 // instant feedback
 function selecteda() {
@@ -75,9 +79,13 @@ function selecteda() {
 	if (finalanswera == javaQuestions[0].correctAnswer) {
     instantfeedbackEl.innerHTML = "Correct";
 	individualquestionscores.push(10);
+	nextquestion(+qindex);
+
 } else {
 	instantfeedbackEl.innerHTML = "You will get the next one";
 	individualquestionscores.push(-5);
+	//timer decrement
+	nextquestion(+qindex);
 };
 };
 
@@ -86,9 +94,14 @@ function selectedb() {
 	if (finalanswerb == javaQuestions[0].correctAnswer) {
     instantfeedbackEl.innerHTML = "Correct";
 	individualquestionscores.push(10);
+	qindex= qindex+1;
+	nextquestion(qindex);
 } else {
 	instantfeedbackEl.innerHTML = "Choose better next time";
 	individualquestionscores.push(-5);
+	qindex= qindex+1;
+	nextquestion(qindex);
+	//timer decrement
 };
 };
 
@@ -97,9 +110,14 @@ function selectedc() {
 	if (finalanswerc == javaQuestions[0].correctAnswer) {
     instantfeedbackEl.innerHTML = "Correct";
 	individualquestionscores.push(10);
+	qindex= qindex+1;
+	nextquestion(qindex);
 } else {
 	instantfeedbackEl.innerHTML = "Close but not Exactly Correct";
 	individualquestionscores.push(-5);
+	//timer decrement
+	qindex= qindex+1;
+	nextquestion(qindex);
 };
 };
 
@@ -108,20 +126,20 @@ function selectedd() {
 	if (finalanswerd == javaQuestions[0].correctAnswer) {
 	instantfeedbackEl.innerHTML = "Correct";
 	individualquestionscores.push(10);
+	qindex= qindex+1;
+	nextquestion(qindex);
+	
 } else {
 	instantfeedbackEl.innerHTML = "Keep Trying, You Will Get It";
 	individualquestionscores.push(-5);
+	//timer decrement
+	qindex= qindex+1;
+	nextquestion(qindex);
 }
 };
 
-//timer = 0 or questions = 0
-	//remove question container
-	
-//all done page- need to find the right place for this
-function alldone() {
-	quizContainerEl.style.display = "none";
-	alldonepageEl.style.display= "inherit";
-}
+
+
 // set up questions and answers in a variable
 // need to update for javascript questions
 var javaQuestions = [
@@ -197,12 +215,24 @@ function timer(timetotal) {
     } else {
       // Once `timeLeft` gets to 0, set `timerEl` to an empty string
       timerEl.textContent = '0';
-	  //stopGame();
+	  alldone();
       // Use `clearInterval()` to stop the timer
       clearInterval(timeInterval);
     }
   }, 1000);
-}
+};
+
+//timer = 0 or questions = 0
+	//remove question container
+	
+//all done page- need to find the right place for this
+function alldone() {
+	quizContainerEl.style.display = "none";
+	alldonepageEl.style.display= "inherit";
+	finalscore();
+	finalscoredisplayEl.innerHTML= "Your final score is:"+ finalscore;
+};
+
 // adds up array of individual scores to create final score
 function finalscore (individualquestionscores) {
 	let finalscore = 0;
@@ -299,45 +329,26 @@ function showResults(questions, quizContainer, resultsContainer){
 function storeResults(studentrecord) {
 window.localStorage.setItem('studentscores', JSON.stringify(studentrecord));
 };
-
 function askstudentInitals () {
     var ioutput = [];
     ioutput.push( );
     initialContainer.innerHTML= ioutput.join('');
-};
-    
-    
-    
+};  
  //   window.localStorage.setItem('studentscores', JSON.stringify(studentrecord));
     //ask for initials
    //var lbl=document.createElement("label");
-    //   lbl.setAttribute("Iniials");
-   //    lbl.setAttribute("Please enter your initials: ");
-  //     document.body.appendChild(lbl);
+   // lbl.setAttribute("Iniials");
+//    lbl.setAttribute("Please enter your initials: ");
+//     document.body.appendChild(lbl);
 // dynamically set up input for initals after results
+// on last answer, show results
+// store initals and score to display and use in high score array
+// studentgrades.push()([numCorrect, "Initials"]);
+// Function Called when Initals are entered time -= 10  
 
-   //store initals and score to display
- //  studentgrades.push()([numCorrect, "Initials"]);
-// Function Called when View HighScores is clicked
-function showHighScores() {
-	startbuttonEl.style.display = "none";
-}
- // HighScore Tracking
-//initalize a blank array
-//populate array
-//var studentgrades = [ [5,"ab"], [2,"js"], [3, "mk"]];
-//sort array
-//var sort1 = studentgrades.sort();
-//create leader board
-//var studentgradesSorted = reverse(sort1);
-    
-// on submit, show results
-//showQuestions(javaQuestions, quizContainer);
-//submitButton.onclick = function(){
 //	showResults(javaQuestions, quizContainer, resultsContainer,initialContainer);
-//};*/
-//startQuiz;
-//document.getElementById("startQuiz").addEventListener("click", startQuiz);
+//*/
+
 startQuizEl.addEventListener("click", startQuiz);
 console.log(individualquestionscores);
 
