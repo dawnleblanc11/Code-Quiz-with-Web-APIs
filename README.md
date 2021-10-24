@@ -1,6 +1,6 @@
 
 # Project Title: Code-Quiz-with-Web-APIs
-!(Code-Quiz-with-Web-APIs_index.html.png)
+![quiz welcome page](assets/images/Code-Quiz-with-Web-APIs_index.html.png)
 ## Description
 An interactive timed quiz with questions on Javascript fundamentals.  This application project will generate a random password from 8 to 128 char in length.  It considers user selected criteria with an assortment of uppercase, numeric and special characters. The app runs in the browser and features dynamically updated HTML and CSS powered by JavaScript code. 
 
