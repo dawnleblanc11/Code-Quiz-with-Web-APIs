@@ -14,6 +14,7 @@ var multichoice4El = document.getElementById("multiple-choice4");
 var instantfeedbackEl = document.getElementById("instant-feedback");
 var alldonepageEl = document.getElementById("alldonepage");
 var finalscoredisplayEl=document.getElementById("finalscoredisplay");
+var initialsBoxEl=document.getElementById("initals-box");
 
 // Nav bar appears on login View High Scores Choice Timer: 0
 // Start timer upon click of Start Quiz
@@ -51,7 +52,7 @@ function startQuiz (){
 };
 
 function nextquestion(qindex) {
-	//figureout why it loops too fast and doesn't wait for click
+
 	var displayquestion = javaQuestions[qindex].question;
 	// pulls question and answers from array
 	var multichoiceanswerA = javaQuestions[qindex].answers.a;
@@ -76,48 +77,46 @@ function nextquestion(qindex) {
 // instant feedback
 function selecteda() {
 	var finalanswera = "a";
-	if (finalanswera == javaQuestions[0].correctAnswer) {
+	if (finalanswera == javaQuestions[qindex].correctAnswer) {
     instantfeedbackEl.innerHTML = "Correct";
 	individualquestionscores.push(10);
-	nextquestion(+qindex);
+	incrementqindex();
 
 } else {
 	instantfeedbackEl.innerHTML = "You will get the next one";
 	individualquestionscores.push(-5);
 	//timer decrement
-	nextquestion(+qindex);
+	incrementqindex();
 };
 };
 
 function selectedb() {
 	var finalanswerb = "b";
-	if (finalanswerb == javaQuestions[0].correctAnswer) {
+	if (finalanswerb == javaQuestions[qindex].correctAnswer) {
     instantfeedbackEl.innerHTML = "Correct";
 	individualquestionscores.push(10);
-	qindex= qindex+1;
-	nextquestion(qindex);
-} else {
+	incrementqindex();
+	} else {
 	instantfeedbackEl.innerHTML = "Choose better next time";
 	individualquestionscores.push(-5);
-	qindex= qindex+1;
-	nextquestion(qindex);
+	incrementqindex()
 	//timer decrement
+}
 };
-};
+
 
 function selectedc() {
 	var finalanswerc = "c";
-	if (finalanswerc == javaQuestions[0].correctAnswer) {
+	if (finalanswerc == javaQuestions[qindex].correctAnswer) {
     instantfeedbackEl.innerHTML = "Correct";
 	individualquestionscores.push(10);
-	qindex= qindex+1;
-	nextquestion(qindex);
+	incrementqindex();
+	
 } else {
 	instantfeedbackEl.innerHTML = "Close but not Exactly Correct";
 	individualquestionscores.push(-5);
 	//timer decrement
-	qindex= qindex+1;
-	nextquestion(qindex);
+	incrementqindex();
 };
 };
 
@@ -126,19 +125,24 @@ function selectedd() {
 	if (finalanswerd == javaQuestions[0].correctAnswer) {
 	instantfeedbackEl.innerHTML = "Correct";
 	individualquestionscores.push(10);
-	qindex= qindex+1;
-	nextquestion(qindex);
+	incrementqindex();
 	
 } else {
 	instantfeedbackEl.innerHTML = "Keep Trying, You Will Get It";
 	individualquestionscores.push(-5);
 	//timer decrement
-	qindex= qindex+1;
-	nextquestion(qindex);
+	incrementqindex();
 }
 };
 
-
+function incrementqindex() {
+	qindex= qindex+1;
+	if (qindex<5) {
+		nextquestion(qindex);
+	} else {
+		alldone();
+	}
+};
 
 // set up questions and answers in a variable
 // need to update for javascript questions
@@ -229,88 +233,34 @@ function timer(timetotal) {
 function alldone() {
 	quizContainerEl.style.display = "none";
 	alldonepageEl.style.display= "inherit";
-	finalscore();
-	finalscoredisplayEl.innerHTML= "Your final score is:"+ finalscore;
+	finalscore(individualquestionscores);
+	
 };
 
-// adds up array of individual scores to create final score
-function finalscore (individualquestionscores) {
-	let finalscore = 0;
-	for (let i=0; i<individualquestionscores.length;i++) {
-		finalscore += individualquestionscores[i];
+
+// adding up array for each question scores into total scores
+// placing on screen
+function finalscore (scorearray) {
+	let finalscore =0;
+	for (let i=0; i< scorearray.length;i++){
+		finalscore += scorearray[i];
+	};
+	finalscoredisplayEl.innerHTML= "Your final score is:"+ finalscore;
+	console.log(initialsBoxEl.value);
 };
-};
+
+
 /*
 
-function getQuestion() {
-	//get current question object from array
-	var currentQuestion = javaquestions[currentQuestionIndex];
-
-};
-
-function showQuestion(){
-	// we'll need a place to store the output and the answer choices
-	var output = [];
-	var answers;
-
-	// for each question...
-	for(var i=0; i<questions.length; i++){
-		
-		// first reset the list of answers
-		answers = [];
-
-		// for each available answer to this question...
-		for(letter in questions[i].answers){
-
-			// ...add an html button
-			answers.push(
-				'<label>'
-					+ '<input type="radio" name="question'+i+'" value="'+letter+'">'
-					+ letter + ': '
-					+ questions[i].answers[letter]
-				+ '</label>'
-			);
-		}
-
-		// add this question and its answers to the output
-		output.push(
-			'<div class="question">' + questions[i].question + '</div>'
-			+ '<div class="answers">' + answers.join('') + '</div>'
-		);
-	}
-
-	// finally combine our output list into one string of html and put it on the page
-	quizContainer.innerHTML = output.join('');
-};
-
-function showResults(questions, quizContainer, resultsContainer){
-	
-	// gather answer containers from our quiz
-	var answerContainers = quizContainer.querySelectorAll('.answers');
-	
-	// keep track of user's answers
-	var userAnswer = '';
-	var numCorrect = 0;
-	
-	// for each question...
-	for(var i=0; i<questions.length; i++){
-
-		// find selected answer
-		userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
-		
-		// if answer is correct
-		if(userAnswer===questions[i].correctAnswer){
-			// add to the number of correct answers
-			numCorrect++;
+//change the color styles
 			
 			// color the answers green
 			answerContainers[i].style.color = 'lightgreen';
 		}
-		// if answer is wrong or blank
+		// if answer is wrong 
 		else{
 			// color the answers red
 			answerContainers[i].style.color = 'red';
-            //add timer decrement here
 		}
 	}
 
@@ -351,4 +301,3 @@ function askstudentInitals () {
 
 startQuizEl.addEventListener("click", startQuiz);
 console.log(individualquestionscores);
-
