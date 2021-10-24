@@ -24,6 +24,8 @@ function testbuttons() {
 	// remove startbutton
 	startQuizEl.remove();
 }
+// function for using list> var list = JSON.parse(localStorage.getItem("list") || "[]");
+// function for clearing list >window.localStorage.clear();
 // HighScore Tracking
 //initalize a blank array
 //populate array
@@ -32,3 +34,6 @@ function testbuttons() {
 //var sort1 = studentgrades.sort();
 //create leader board
 //var studentgradesSorted = reverse(sort1);
+
+
+  

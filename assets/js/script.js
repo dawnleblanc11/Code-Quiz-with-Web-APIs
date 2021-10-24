@@ -18,10 +18,12 @@ var initialsBoxEl=document.getElementById("initals-box");
 
 // Nav bar appears on login View High Scores Choice Timer: 0
 // Start timer upon click of Start Quiz
-// Clean screen of Text and startquiz button;
+// Initialize Question Index
+// Clean screen of Welecome Text and startquiz button;
 // Initialize array to score value of each question answered
 let individualquestionscores = [ ];
 let qindex = 0;
+let leaderboardarray = [ ];
 
 function startQuiz (){
 	//start timer at 70 seconds
@@ -40,14 +42,13 @@ function startQuiz (){
 	multichoice4El.innerHTML= "";
 	// clearout instant feedback section
 	instantfeedbackEl.innerHTML = "";
-
 	//hide welcomepage
 	welcomepageEl.remove();
 	// remove startbutton
 	startQuizEl.remove();
-	// getQuestion();
-	quizContainerEl.style.display = "inherit";
 	// have question area appear
+	quizContainerEl.style.display = "inherit";
+	// have first question appear
 	nextquestion(0);
 };
 
@@ -59,22 +60,24 @@ function nextquestion(qindex) {
 	var multichoiceanswerB = javaQuestions[qindex].answers.b;
 	var multichoiceanswerC = javaQuestions[qindex].answers.c;
 	var multichoiceanswerD = javaQuestions[qindex].answers.d;
-		// insert question
+	// insert question into the html area
    questionhereEl.innerHTML= displayquestion;
-   //show the answers
+   // place the answers into the html area
    multichoice1El.innerHTML= multichoiceanswerA;
    multichoice2El.innerHTML= multichoiceanswerB;
    multichoice3El.innerHTML= multichoiceanswerC;
    multichoice4El.innerHTML= multichoiceanswerD;
-   
-   //listen for click event
+   //wait for a click event to register user selected answer
    multichoice1El.addEventListener("click", selecteda);
    multichoice2El.addEventListener("click", selectedb);
    multichoice3El.addEventListener("click", selectedc);
    multichoice4El.addEventListener("click", selectedd);
 };
 
-// instant feedback
+// create diversified and instant feedback to encourage users
+// adds 10 points for correct anwer
+// subtracts 5 points for incorrect answer
+// to DO: decrements time for incorrect answer
 function selecteda() {
 	var finalanswera = "a";
 	if (finalanswera == javaQuestions[qindex].correctAnswer) {
@@ -103,7 +106,6 @@ function selectedb() {
 	//timer decrement
 }
 };
-
 
 function selectedc() {
 	var finalanswerc = "c";
@@ -135,6 +137,7 @@ function selectedd() {
 }
 };
 
+// created an index to increment the questions and exit when all questions are completed
 function incrementqindex() {
 	qindex= qindex+1;
 	if (qindex<5) {
@@ -145,55 +148,55 @@ function incrementqindex() {
 };
 
 // set up questions and answers in a variable
-// need to update for javascript questions
+// to DO: update for javascript questions
 var javaQuestions = [
 	{
-		question: "What color is a pumpkin?",
+		question: "Arrays in Javascript can be used to store",
 		answers: {
-			a: 'green',
-			b: 'orange',
-			c: 'blue',
-			d: 'green'
+			a: 'numbers and strings',
+			b: 'other arrays',
+			c: 'booleans',
+			d: 'all of the above'
 		},
-		correctAnswer: 'b'
+		correctAnswer: 'd'
 	},
 	{
-		question: "What is a witches favorite color",
+		question: "The condition in an if / else statement is enclosed within ____",
 		answers: {
-			a: 'purple',
-			b: 'black',
-			c: 'orange',
-			d: 'white'
+			a: 'curly brackets',
+			b: 'quotes',
+			c: 'square brackets',
+			d: 'parenthesis'
 		},
 		correctAnswer: 'b'
 	}, 
     {
-		question: "what color are ghosts?",
+		question: "Easy tool for development debugging along the way is ______",
 		answers: {
-			a: 'white',
-			b: 'blue',
-            c: 'pink',
-			d: 'purple'
-		},
-		correctAnswer: 'a'
-	},
-    {
-		question: "what color is candy corn?",
-		answers: {
-			a: 'green, white, red',
-			b: 'pink, blue, white',
-            c: "orange,white,yellow",
-			d: "purple, orange, green"
+			a: 'javascript',
+			b: 'terminal/bash',
+            c: 'console log',
+			d: 'for loops'
 		},
 		correctAnswer: 'c'
 	},
     {
-		question: "Do Vampires like blood?",
+		question: "Commonly used datatypes DO NOT include:",
 		answers: {
-			a: 'yes',
-			b: 'no',
-			c: 'maybe',
-			d: 'have not met one'
+			a: 'alerts',
+			b: 'strings',
+            c: 'booleans',
+			d: 'numbers'
+		},
+		correctAnswer: 'a'
+	},
+    {
+		question: "What is meant by 'this' keyworrd in javascript?",
+		answers: {
+			a: 'the current object',
+			b: 'the previous object',
+			c: 'a variable that contians a value',
+			d: 'none of the above'
 		},
 		correctAnswer: 'a'
 	},
@@ -217,9 +220,9 @@ function timer(timetotal) {
       timerEl.textContent = timeLeft;
       timeLeft--;
     } else {
-      // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+      alldone(); // Once `timeLeft` gets to 0, set `timerEl` to an empty string
       timerEl.textContent = '0';
-	  alldone();
+	  //create a different version of all done
       // Use `clearInterval()` to stop the timer
       clearInterval(timeInterval);
     }
@@ -234,30 +237,36 @@ function alldone() {
 	quizContainerEl.style.display = "none";
 	alldonepageEl.style.display= "inherit";
 	finalscore(individualquestionscores);
-	
+	console.log(leaderboardarray);
+	//console.log('studentscores',JSON.stringify(leaderboardarray));
+	//window.localStorage.setItem('studentscores', JSON.stringify(leaderboardarray));	
 };
+//	window.localStorage.setItem('studentscores', JSON.stringify(leaderboardarray));	
 
 
 // adding up array for each question scores into total scores
 // placing on screen
 function finalscore (scorearray) {
-	let finalscore =0;
+	let finalscorevalue =0;
 	for (let i=0; i< scorearray.length;i++){
-		finalscore += scorearray[i];
+		finalscorevalue += scorearray[i];
 	};
-	finalscoredisplayEl.innerHTML= "Your final score is:"+ finalscore;
-	console.log(finalscore);
+	finalscoredisplayEl.innerHTML= "Your final score is:"+ finalscorevalue;
+	leaderboardarray.push(finalscorevalue);
+
+	
 };
 
 function getInitials(){
 	// Selecting the input element and get its value 
 	var initials = document.getElementById("inputInitials").value;
-    console.log (initials);
+	leaderboardarray.push(initials);
+		
 };
 
 /*
 
-//change the color styles
+// nice to haves :change the color styles
 			
 			// color the answers green
 			answerContainers[i].style.color = 'lightgreen';
@@ -305,4 +314,4 @@ function askstudentInitals () {
 //*/
 
 startQuizEl.addEventListener("click", startQuiz);
-console.log(individualquestionscores);
+
