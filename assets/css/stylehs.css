@@ -21,7 +21,21 @@
     font-weight: bold;
     color:black;  
   }
-
+  #leader1,
+  #leader2,
+  #leader3,
+  #leader4,
+  #leader5{
+      background-color:var(--accent);
+      border-color: gray;
+      width: 450px;   
+      border-radius: 10px;
+      height: 50px; 
+      font-size: 20px;
+      color:white;
+      padding-left: 50px;
+      padding-top: 5px;
+  }
 #restartquiz, #clearhighscores {
     color:white;
     background-color: var(--accent);

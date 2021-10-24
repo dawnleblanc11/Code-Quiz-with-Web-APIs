@@ -25,6 +25,7 @@ let individualquestionscores = [ ];
 let qindex = 0;
 let leaderboardarray = [ ];
 let quizInProgress = "true";
+var timeLeft = 70;
 
 
 
@@ -93,6 +94,7 @@ function selecteda() {
 	individualquestionscores.push(-5);
 	//timer decrement
 	incrementqindex();
+	decrementtime();
 };
 };
 
@@ -105,7 +107,8 @@ function selectedb() {
 	} else {
 	instantfeedbackEl.innerHTML = "Choose better next time";
 	individualquestionscores.push(-5);
-	incrementqindex()
+	incrementqindex();
+	decrementtime();
 	//timer decrement
 }
 };
@@ -122,6 +125,7 @@ function selectedc() {
 	individualquestionscores.push(-5);
 	//timer decrement
 	incrementqindex();
+	decrementtime();
 };
 };
 
@@ -137,6 +141,7 @@ function selectedd() {
 	individualquestionscores.push(-5);
 	//timer decrement
 	incrementqindex();
+	timeLeft = timeLeft-10;
 }
 };
 
@@ -150,6 +155,10 @@ function incrementqindex() {
 		quizInProgress = "false";
 	}
 };
+
+function decrementtime() {
+	timeLeft= (timeLeft-10);
+}
 
 // set up questions and answers in a variable
 // to DO: update for javascript questions
@@ -209,7 +218,7 @@ var javaQuestions = [
 // to DO: allow for  a restart
 // create a decrement for wrong answers
 function timer(timetotal) {
-  var timeLeft = 70;
+  
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
@@ -273,58 +282,11 @@ function alldone(quizStatus) {
 		finalscore(individualquestionscores);
 	} else {
 		alert("quiz over");
-	}
-	
-	//console.log('studentscores',JSON.stringify(leaderboardarray));
+	};	
+};
+	// localStorage.setItem(numCorrect,value);
 	//window.localStorage.setItem('studentscores', JSON.stringify(leaderboardarray));	
-};
-/*
-
-// nice to haves :change the color styles
-			
-			// color the answers green
-			answerContainers[i].style.color = 'lightgreen';
-		}
-		// if answer is wrong 
-		else{
-			// color the answers red
-			answerContainers[i].style.color = 'red';
-		}
-	}
-
-	// show number of correct answers out of total
-   
-    // localStorage.setItem(numCorrect,value);
-	resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
-    const studentrecord = {
-        grade: numCorrect,
-        initials: "dl", 
-    };
-    storeResults(studentrecord);
-}; 
-
- // storing grade and initals
-function storeResults(studentrecord) {
-window.localStorage.setItem('studentscores', JSON.stringify(studentrecord));
-};
-function askstudentInitals () {
-    var ioutput = [];
-    ioutput.push( );
-    initialContainer.innerHTML= ioutput.join('');
-};  
- //   window.localStorage.setItem('studentscores', JSON.stringify(studentrecord));
-    //ask for initials
-   //var lbl=document.createElement("label");
-   // lbl.setAttribute("Iniials");
-//    lbl.setAttribute("Please enter your initials: ");
-//     document.body.appendChild(lbl);
-// dynamically set up input for initals after results
-// on last answer, show results
-
-// studentgrades.push()([numCorrect, "Initials"]);
-// Function Called when Initals are entered time -= 10  
-
-//*/
+	// localStorage.setItem(numCorrect,value);
 
 startQuizEl.addEventListener("click", startQuiz);
 
