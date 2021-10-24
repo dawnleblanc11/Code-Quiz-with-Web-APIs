@@ -28,7 +28,6 @@ let quizInProgress = "true";
 var timeLeft = 70;
 
 
-
 function startQuiz (){
 	//start timer at 70 seconds
 		timer();
