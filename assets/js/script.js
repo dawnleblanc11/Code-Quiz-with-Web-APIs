@@ -246,9 +246,14 @@ function finalscore (scorearray) {
 		finalscore += scorearray[i];
 	};
 	finalscoredisplayEl.innerHTML= "Your final score is:"+ finalscore;
-	console.log(initialsBoxEl.value);
+	console.log(finalscore);
 };
 
+function getInitials(){
+	// Selecting the input element and get its value 
+	var initials = document.getElementById("inputInitials").value;
+    console.log (initials);
+};
 
 /*
 
