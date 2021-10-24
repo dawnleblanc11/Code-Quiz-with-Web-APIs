@@ -14,15 +14,7 @@
     font-family: var(--favoritefont);
   }
 
-  .container {
-  
-}
-  /* Nav Style Start*/
-
-  nav {
-  }
-
-  /* Score and Time  Style End*/
+  /* Score and Time  Style*/
 .viewhighscoresandtime {
     display: flex;
     justify-content: space-between;
@@ -52,14 +44,6 @@
 #timer{
     color: black;
 }
-.welcomepage p{
-    
-}
-.welcomepage h1{
-   }
-
-.startquizbutton {
-}
 
 #startQuiz {
     font-size: 20px;
@@ -83,18 +67,23 @@
     color:black;
 }
 
+.largequestion h2 {
+    margin-left:20px;
+}
+
 #multiple-choice1,
 #multiple-choice2,
 #multiple-choice3,
 #multiple-choice4 {
     background-color:var(--accent);
     border-color: gray;
-    width: 350px;   
+    width: 450px;   
     border-radius: 10px;
     height: 50px; 
     font-size: 20px;
     color:white;
-    margin-left: 25px;
+    padding-left: 50px;
+    padding-top: 5px;
 }
 
 #multiple-choice1:hover,
@@ -110,7 +99,24 @@
 }
 #alldonepage {
     display:none;
+    font-weight: bold;
+    color:black;
+
 }
+.alldonepage button {
+    font-size: 20px;
+    color:white;
+    background-color: var(--accent);
+    border-radius: 10px;
+    width: 150px;
+    height: 50px;
+    border-color: gray;
+
+}
+.alldonepage button:hover {
+    background-color: var(--hovercolor);
+}
+
 #initalsbox {
     color:white;
     background-color: var(--accent);

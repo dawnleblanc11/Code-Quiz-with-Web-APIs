@@ -24,6 +24,9 @@ var initialsBoxEl=document.getElementById("initals-box");
 let individualquestionscores = [ ];
 let qindex = 0;
 let leaderboardarray = [ ];
+let quizInProgress = "true";
+
+
 
 function startQuiz (){
 	//start timer at 70 seconds
@@ -144,6 +147,7 @@ function incrementqindex() {
 		nextquestion(qindex);
 	} else {
 		alldone();
+		quizInProgress = "false";
 	}
 };
 
@@ -191,11 +195,11 @@ var javaQuestions = [
 		correctAnswer: 'a'
 	},
     {
-		question: "What is meant by 'this' keyworrd in javascript?",
+		question: "What is meant by 'this' keyword in javascript?",
 		answers: {
 			a: 'the current object',
 			b: 'the previous object',
-			c: 'a variable that contians a value',
+			c: 'variable containing a value',
 			d: 'none of the above'
 		},
 		correctAnswer: 'a'
@@ -209,19 +213,22 @@ function timer(timetotal) {
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
-    if (timeLeft > 1) {
+    if (timeLeft > 1 && (quizInProgress === "true" )) {
       // Set the `textContent` of `timerEl` to show the remaining seconds
       timerEl.textContent = timeLeft ;
       // Decrement `timeLeft` by 1
       timeLeft--;
-    } else if (timeLeft === 1) {
+    } else if (timeLeft === 1 && (quizInProgress === "true" )) {
       // When `timeLeft` is equal to 1, set color to red as a warning
       timerEl.style.color = "red";
       timerEl.textContent = timeLeft;
       timeLeft--;
     } else {
-      alldone(); // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+       // Once `timeLeft` gets to 0, set `timerEl` to an empty string
       timerEl.textContent = '0';
+	  quizInProgress = "false";
+	  alldone(quizInProgress);
+
 	  //create a different version of all done
       // Use `clearInterval()` to stop the timer
       clearInterval(timeInterval);
@@ -232,38 +239,45 @@ function timer(timetotal) {
 //timer = 0 or questions = 0
 	//remove question container
 	
-//all done page- need to find the right place for this
-function alldone() {
-	quizContainerEl.style.display = "none";
-	alldonepageEl.style.display= "inherit";
-	finalscore(individualquestionscores);
-	console.log(leaderboardarray);
-	//console.log('studentscores',JSON.stringify(leaderboardarray));
-	//window.localStorage.setItem('studentscores', JSON.stringify(leaderboardarray));	
-};
+
 //	window.localStorage.setItem('studentscores', JSON.stringify(leaderboardarray));	
 
 
 // adding up array for each question scores into total scores
 // placing on screen
+
 function finalscore (scorearray) {
-	let finalscorevalue =0;
+	let finalscorevalue=0;
+	console.log(scorearray);
 	for (let i=0; i< scorearray.length;i++){
 		finalscorevalue += scorearray[i];
 	};
-	finalscoredisplayEl.innerHTML= "Your final score is:"+ finalscorevalue;
+	finalscoredisplayEl.innerHTML= "Your final score is:   "+ finalscorevalue;
+	console.log(finalscorevalue);
 	leaderboardarray.push(finalscorevalue);
-
 	
+	// store initals and score to display and use in high score array
 };
 
 function getInitials(){
 	// Selecting the input element and get its value 
 	var initials = document.getElementById("inputInitials").value;
 	leaderboardarray.push(initials);
-		
+	console.log(leaderboardarray);	
 };
-
+//all done page- need to find the right place for this
+function alldone(quizStatus) {
+	quizContainerEl.style.display = "none";
+	alldonepageEl.style.display= "inherit";
+	if (quizStatus = "false") {
+		finalscore(individualquestionscores);
+	} else {
+		alert("quiz over");
+	}
+	
+	//console.log('studentscores',JSON.stringify(leaderboardarray));
+	//window.localStorage.setItem('studentscores', JSON.stringify(leaderboardarray));	
+};
 /*
 
 // nice to haves :change the color styles
@@ -306,11 +320,10 @@ function askstudentInitals () {
 //     document.body.appendChild(lbl);
 // dynamically set up input for initals after results
 // on last answer, show results
-// store initals and score to display and use in high score array
+
 // studentgrades.push()([numCorrect, "Initials"]);
 // Function Called when Initals are entered time -= 10  
 
-//	showResults(javaQuestions, quizContainer, resultsContainer,initialContainer);
 //*/
 
 startQuizEl.addEventListener("click", startQuiz);
