@@ -26,8 +26,11 @@
     <!-- Page that appears on oppening of application -->
     <div id="welcomepage">
         <h1> Coding Quiz Challenge: Javascript </h1>
+        <br>
         <p> Try to answer the following code-related questions within the timelimit. </p>
         <p> Keep in mind that incorrect answers will penalize your score/time by ten seconds! </p>
+        <br>
+        <br>
     </div>
     <div class="startquizbutton">
       <button id="startQuiz">Start Quiz</button> 
@@ -53,14 +56,19 @@
   <!-- All Done page- presents score final score and asks for intials-->
         <div class="alldonepage" id="alldonepage">
           <h3 id="alldone"> All Done!</h3>
-          <p> Your final score is: xx .</p>
-          <label for="initals-box">Enter intials:</label> 
-          <input id="initals-box" type="text" name="text">
-          <input type="submit" value="Submit"></input>   
+          <br>
+          <p id="finalscoredisplay"> Your final score is: being calculated.</p>
+          <br>
+          <p> Enter Your Initials to be added to the Leader Board</p>
+          <br>
+          <input type="text" placeholder="Type something..." id="inputInitials">      
+          <button type="button" onclick="getInitials();">Enter Initials</button>
+   
         </div>
 
    <!-- Final Page In alternative HTML-->
     </div>
 </body>
 <script src="./assets/js/script.js"></script>
+<script src="./assets/js/scripths.js"></script>
 </html>
