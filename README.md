@@ -23,7 +23,8 @@ An interactive timed quiz with questions on Javascript fundamentals.  This appli
  * Ability to Randomize Questions and Answers
  * Additional formatting of user interface
  * Better navigation to leaderboard
- * Bug Fix: Local Storage duplicate score value sent
+ * Bug Fix: duplicate score values being sent to local storage
+ * Filter out multiple entries from same student
 
 
 ## Executing Program

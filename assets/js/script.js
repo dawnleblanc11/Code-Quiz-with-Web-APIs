@@ -244,24 +244,14 @@ function timer(timetotal) {
   }, 1000);
 };
 
-//timer = 0 or questions = 0
-	//remove question container
-	
-
-//	window.localStorage.setItem('studentscores', JSON.stringify(leaderboardarray));	
-
-
 // adding up array for each question scores into total scores
-// placing on screen
 
 function finalscore (scorearray) {
 	let finalscorevalue=0;
-	console.log(scorearray);
 	for (let i=0; i< scorearray.length;i++){
 		finalscorevalue += scorearray[i];
 	};
 	finalscoredisplayEl.innerHTML= "Your final score is:   "+ finalscorevalue;
-	console.log(finalscorevalue);
 	leaderboardarray.push(finalscorevalue);
 	
 	// store initals and score to display and use in high score array
@@ -271,6 +261,7 @@ function getInitials(){
 	// Selecting the input element and get its value 
 	var initials = document.getElementById("inputInitials").value;
 	leaderboardarray.push(initials);
+	localStorage.setItem('studentscores', JSON.stringify(leaderboardarray));
 	console.log(leaderboardarray);	
 };
 //all done page- need to find the right place for this
