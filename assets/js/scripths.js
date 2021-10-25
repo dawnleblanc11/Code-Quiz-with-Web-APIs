@@ -42,8 +42,7 @@ function populateLeaderboard () {
 
 // restarts the game on click
 // function restart() {
-    console.log("restart clicked")
-//    ;
+ //   window.history.back();
 //    location.reload();
 //};
 
@@ -52,7 +51,7 @@ function populateLeaderboard () {
 //   updatedstudentscores= [];
 //};
 
-restartquizButtonEl.addEventListener("click", window.history.back());
+restartquizButtonEl.addEventListener("click", console.log("restart clicked"));
 
 clearhighscoresButtonEl.addEventListener("click", console.log("test scores cleared"));
 
